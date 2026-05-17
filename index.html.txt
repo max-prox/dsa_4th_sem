@@ -1,0 +1,183 @@
+export default function NeonDSATracker() {
+  const saveCheckbox = (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
+  };
+
+  const getCheckbox = (key) => {
+    return JSON.parse(localStorage.getItem(key) || "false");
+  };
+  const topics = [
+    {
+      title: "Arrays",
+      questions: [
+        ["Reverse an Array", "https://leetcode.com/problems/reverse-string/"],
+        ["Check if Array is Palindrome", "https://leetcode.com/problems/valid-palindrome/"],
+        ["Two Sum II (Sorted Array)", "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/"],
+        ["Remove Duplicates from Sorted Array", "https://leetcode.com/problems/remove-duplicates-from-sorted-array/"],
+        ["Move Zeroes", "https://leetcode.com/problems/move-zeroes/"],
+        ["Sum of Subarray of Size K", "https://leetcode.com/problems/maximum-average-subarray-i/"],
+        ["Average of Subarray of Size K", "https://leetcode.com/problems/maximum-average-subarray-i/"],
+        ["Maximum Element in Subarray of Size K", "https://leetcode.com/problems/sliding-window-maximum/"],
+        ["Count Subarrays of Size K", "https://leetcode.com/problems/subarray-sum-equals-k/"]
+      ]
+    },
+    {
+      title: "Strings",
+      questions: [
+        ["Reverse a String", "https://leetcode.com/problems/reverse-string/"],
+        ["Check Palindrome String", "https://leetcode.com/problems/valid-palindrome/"],
+        ["Count Vowels and Consonants", "https://leetcode.com/problems/determine-if-string-halves-are-alike/"],
+        ["Reverse each word of String", "https://leetcode.com/problems/reverse-words-in-a-string-iii/"],
+        ["Reverse Vowels of String", "https://leetcode.com/problems/reverse-vowels-of-a-string/"],
+        ["Maximum Vowels in substring of size K", "https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/"],
+        ["Find All Anagrams in a String", "https://leetcode.com/problems/find-all-anagrams-in-a-string/"],
+        ["Substring of size three with Distinct Characters", "https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/"],
+        ["Find Common Characters", "https://leetcode.com/problems/find-common-characters/"]
+      ]
+    },
+    {
+      title: "Linked List",
+      questions: [
+        ["Insert at Beginning", "https://leetcode.com/problems/design-linked-list/"],
+        ["Insert at End", "https://leetcode.com/problems/design-linked-list/"],
+        ["Insert at Position k", "https://leetcode.com/problems/design-linked-list/"],
+        ["Delete First Node", "https://leetcode.com/problems/delete-node-in-a-linked-list/"],
+        ["Delete Last Node", "https://leetcode.com/problems/remove-linked-list-elements/"],
+        ["Search an Element", "https://leetcode.com/problems/search-in-a-binary-search-tree/"],
+        ["Reverse a Linked List", "https://leetcode.com/problems/reverse-linked-list/"],
+        ["Linked List Cycle", "https://leetcode.com/problems/linked-list-cycle/"],
+        ["Count Number of Nodes", "https://leetcode.com/problems/count-complete-tree-nodes/"]
+      ]
+    },
+    {
+      title: "Stacks & Queues",
+      questions: [
+        ["Valid Parentheses", "https://leetcode.com/problems/valid-parentheses/"],
+        ["Remove All Adjacent Duplicates in String", "https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/"],
+        ["Baseball Game", "https://leetcode.com/problems/baseball-game/"],
+        ["Backspace String Compare", "https://leetcode.com/problems/backspace-string-compare/"],
+        ["Implement Stack using Queues", "https://leetcode.com/problems/implement-stack-using-queues/"],
+        ["Maximum Nesting Depth of Parentheses", "https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/"],
+        ["Next Greater Element", "https://leetcode.com/problems/next-greater-element-i/"],
+        ["Implement Queue using Stack", "https://leetcode.com/problems/implement-queue-using-stacks/"],
+        ["Design Circular Deque", "https://leetcode.com/problems/design-circular-deque/"]
+      ]
+    },
+    {
+      title: "Trees",
+      questions: [
+        ["Count Total Nodes in Binary Tree", "https://leetcode.com/problems/count-complete-tree-nodes/"],
+        ["Height (Max Depth) of Binary Tree", "https://leetcode.com/problems/maximum-depth-of-binary-tree/"],
+        ["Print Preorder Traversal", "https://leetcode.com/problems/binary-tree-preorder-traversal/"],
+        ["Print Postorder Traversal", "https://leetcode.com/problems/binary-tree-postorder-traversal/"],
+        ["Print Inorder Traversal", "https://leetcode.com/problems/binary-tree-inorder-traversal/"],
+        ["Symmetric Tree", "https://leetcode.com/problems/symmetric-tree/"],
+        ["Cousins in Binary Tree", "https://leetcode.com/problems/cousins-in-binary-tree/"],
+        ["Binary Tree Level Order Traversal", "https://leetcode.com/problems/binary-tree-level-order-traversal/"],
+        ["Find Maximum & Minimum Value in Tree", "https://leetcode.com/problems/validate-binary-search-tree/"],
+        ["Diameter of Binary Tree", "https://leetcode.com/problems/diameter-of-binary-tree/"]
+      ]
+    },
+    {
+      title: "Graphs",
+      questions: [
+        ["BFS Traversal of Graph", "https://leetcode.com/problems/find-if-path-exists-in-graph/"],
+        ["DFS Traversal of Graph", "https://leetcode.com/problems/keys-and-rooms/"],
+        ["Count Number of Connected Components", "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/"]
+      ]
+    },
+    {
+      title: "Recursion",
+      questions: [
+        ["Power of Two", "https://leetcode.com/problems/power-of-two/"],
+        ["Reverse Linked List", "https://leetcode.com/problems/reverse-linked-list/"]
+      ]
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#050816] text-white overflow-x-hidden relative p-8">
+      <div className="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] rounded-full bg-cyan-400/20 blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-[-100px] right-[-100px] w-[500px] h-[500px] rounded-full bg-pink-500/20 blur-3xl animate-pulse"></div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <h1 className="text-6xl font-extrabold text-center mb-4 bg-gradient-to-r from-cyan-400 via-pink-500 to-violet-500 text-transparent bg-clip-text drop-shadow-[0_0_20px_cyan] animate-pulse">
+          DSA Practice Tracker
+        </h1>
+
+        <p className="text-center text-gray-300 mb-10 text-lg">
+          Neon Animated Dashboard with DSA Questions
+        </p>
+
+        <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-cyan-400/20 shadow-[0_0_40px_rgba(0,255,255,0.15)] overflow-hidden">
+          <div className="grid grid-cols-[70px_1fr_160px_120px_120px] gap-4 px-6 py-4 text-cyan-300 font-bold text-lg uppercase tracking-wider">
+            <div>#</div>
+            <div>Question</div>
+            <div>LeetCode</div>
+            <div>Practice 1</div>
+            <div>Practice 2</div>
+          </div>
+
+          <div className="space-y-8 mt-4">
+            {topics.map((topic, topicIndex) => (
+              <div key={topicIndex} className="mb-8">
+                <div className="sticky top-0 z-10 mb-3 rounded-2xl bg-gradient-to-r from-cyan-500/20 to-pink-500/20 backdrop-blur-xl px-6 py-4 border border-cyan-400/20">
+                  <h2 className="text-3xl font-bold text-cyan-300 drop-shadow-[0_0_10px_cyan]">
+                    {topic.title}
+                  </h2>
+                </div>
+
+                <div className="space-y-2">
+                  {topic.questions.map((q, i) => (
+              <div
+                key={`${topic.title}-${i}`}
+                className="grid grid-cols-[70px_1fr_160px_120px_120px] gap-4 items-center px-6 py-4 rounded-2xl bg-white/[0.03] hover:bg-cyan-400/10 transition-all duration-300"
+              >
+                <div className="text-pink-400 font-bold text-lg">{`${topicIndex + 1}.${i + 1}`}</div>
+
+                <div className="text-white text-lg">
+                  {q[0]}
+                </div>
+
+                <a
+                  href={q[1]}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center px-4 py-2 rounded-xl bg-cyan-400/10 border border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/20 hover:scale-105 transition-all duration-300"
+                >
+                  Open Link
+                </a>
+
+                <div>
+                  <input
+                    type="checkbox"
+                    defaultChecked={getCheckbox(`${topic.title}-${i}-p1`)}
+                    onChange={(e) => saveCheckbox(`${topic.title}-${i}-p1`, e.target.checked)}
+                    className="w-5 h-5 accent-cyan-400 cursor-pointer scale-125"
+                  />
+                </div>
+
+                <div>
+                  <input
+                    type="checkbox"
+                    defaultChecked={getCheckbox(`${topic.title}-${i}-p2`)}
+                    onChange={(e) => saveCheckbox(`${topic.title}-${i}-p2`, e.target.checked)}
+                    className="w-5 h-5 accent-pink-500 cursor-pointer scale-125"
+                  />
+                </div>
+              </div>
+                              ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <button className="block mx-auto mt-14 px-10 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-pink-500 text-white text-xl font-bold shadow-[0_0_25px_rgba(0,255,255,0.5)] hover:scale-110 transition duration-300">
+          Keep Grinding 🚀
+        </button>
+      </div>
+    </div>
+  );
+}
+
